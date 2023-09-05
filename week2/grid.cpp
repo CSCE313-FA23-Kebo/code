@@ -10,12 +10,12 @@ int main()
 {
   size_t width = 0;
   size_t height = 0;
-  cout << "Enter width and height: ";
-  cin >> width >> height;
+  cout << "Enter width and height: "; // e.g printf() --> System call
+  cin >> width >> height; // System call
 
   // Allocate a 2D array of pointers (Rows)
-  int **grid = new int *[height];
-
+  int **grid = new int *[height]; // e.g malloc() calloc() request access to Memory
+ 
   // Allocate data pointed to in each row (columns)
   for (size_t y = 0; y < height; ++y)
   {

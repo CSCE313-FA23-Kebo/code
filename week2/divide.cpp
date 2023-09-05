@@ -7,7 +7,7 @@ using namespace std;
 
 float divide(float numerator, float denominator)
 {
-	return (numerator / denominator); // Illegal instruction
+	return (numerator / denominator); // Illegal instruction*
 }
 
 int main()
