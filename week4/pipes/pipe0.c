@@ -1,5 +1,5 @@
 /*
-Example: C program to implement pipe in Linux
+Example: C program to use a pipe in Linux
  */
 #include <errno.h>
 #include <fcntl.h>

@@ -11,7 +11,7 @@ Example: C program to differentiate a parent process from a child process after 
 
 void forkexample()
 {
-	int child_status;
+	//int child_status;
 	// child process because return value zero
 	if (fork() == 0)
 	{
@@ -21,7 +21,7 @@ void forkexample()
 	}
 
 	// parent process because return value non-zero.
-	else
+	//else
 	{
 		// wait(&child_status); // Waits at least one child process to return an exit status
 		printf("2. Hello from Parent!\n");

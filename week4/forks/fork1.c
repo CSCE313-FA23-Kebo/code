@@ -7,8 +7,8 @@ Example: C program to implement 2 forks
 int main()
 {
 	fork();
-    fork();
-
+	fork();
+	
 	printf("Welcome to CSCE 313!\n");
 	return 0;
 }

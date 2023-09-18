@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
 		close(pipefds[1]); // Close the write end on the child
 		//child read from the pipe read end until the pipe is em
 
-		// Read 1 byte at at time from the pipe
+		// Read 1 byte at a time from the pipe
 		while(read(pipefds[0],buf,1)==1){
 			printf("CHILD read from pipe --%s\n",buf);
 		}

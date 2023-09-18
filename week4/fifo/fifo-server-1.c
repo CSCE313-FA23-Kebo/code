@@ -35,6 +35,7 @@ int main(int argc, char const *argv[]) {
     /* If we read a 0, quit; otherwise print hello */
     if (req == 0)
     break;
+    printf("Hello we got the number %d !", req);
     printf ("hello\n");
   }
 

@@ -12,7 +12,7 @@ Example: A client process that sends six messages to the server
 
 int main(int argc, char const *argv[]) {
 
-const char *FIFO = "/tmp/MY_FIFO";
+const char *FIFO = "/tmp/MY_FIFO"; // Path to the FIFO
 
 /* Use the file name to open the FIFO for writing */
 int fifo = open (FIFO, O_WRONLY);
