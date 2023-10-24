@@ -11,6 +11,6 @@ int main()
 {
     const char *file = "/usr/bin/echo";
     const char *arg1 = "Hello world!";
-    execl(file, file, arg1, NULL);
+    execl(file, file, arg1, NULL); // Binary + Path to the Binary + Rest of the options ... + NULL
     return 0;
 }

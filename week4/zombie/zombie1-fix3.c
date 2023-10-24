@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-void func(int signum)
+void do_something(int signum)
 {
     wait(NULL);
 }
@@ -21,7 +21,7 @@ int main()
             printf("I am Child\n");
     else
     {
-        signal(SIGCHLD, func);
+        signal(SIGCHLD, do_something); // do_something is a signal handler
         printf("I am Parent\n");
         while(1);
     }

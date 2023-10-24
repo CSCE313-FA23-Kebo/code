@@ -17,7 +17,7 @@ int main()
     }
     else
     {
-        signal(SIGCHLD,SIG_IGN);
+        signal(SIGCHLD,SIG_IGN);  // Listen to a SIGCHLD signal and then do nothing
         printf("I am Parent\n");
         while(1);
     }

@@ -20,7 +20,7 @@ int main()
     else
     {
         printf("I am Parent\n");
-        while (1)
+        while (1) // Pause
             ;
     }
 }

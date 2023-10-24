@@ -9,7 +9,7 @@ static void sig_usr(int); /* one handler for both signals */
 
 int main(void)
 {
-    pid_t process_id = getpid();
+    pid_t process_id = getpid(); // ID for the running process
     printf("Process ID: %i\n", process_id);
     printf("Waiting for a signal ...\n");
     if (signal(SIGUSR1, sig_usr) == SIG_ERR) // Disposition for SIGUSR1
@@ -20,6 +20,7 @@ int main(void)
         pause(); // The pause function suspends the calling process until a signal is received.
 }
 
+// This is the signal handler for both signals
 static void sig_usr(int signo) /* argument is signal number */
 {
     if (signo == SIGUSR1)

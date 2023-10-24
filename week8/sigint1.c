@@ -17,12 +17,12 @@ int main()
     //signal(SIGINT, sighandler); // VERSION 1
 
     // Option 2: ignore the signal
-    //signal(SIGINT, SIG_DFL);
+    //signal(SIGINT, SIG_IGN);
 
     // Option 3: Use the default behavior
     pid_t process_id = getpid();
     printf("The process ID is %d\n", process_id);
-    signal(SIGINT, SIG_IGN);
+    signal(SIGINT, SIG_DFL);
 
     for (int i = 0; i < 5; i++)
     {

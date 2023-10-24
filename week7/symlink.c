@@ -12,8 +12,8 @@ This program creates symbolic links
 
 int main()
 {
-    char fn[] = "test.file";
-    char sln[] = "test.symlink";
+    char fn[] = "test.file"; // source file
+    char sln[] = "test.symlink"; // symbolic link
     int fd;
 
     if ((fd = creat(fn, S_IWUSR)) < 0)
@@ -30,13 +30,15 @@ int main()
         }
         else
         {
-            puts("after symlink()");
+            printf("after symlink()\n");
             system("ls -il test.*");
             unlink(fn);
-            puts("after first unlink()");
+
+            printf("after first unlink()\n");
             system("ls -il test.*");
             unlink(sln);
-            puts("after second unlink()");
+
+            printf("after second unlink()\n");
             system("ls -il");
         }
     }

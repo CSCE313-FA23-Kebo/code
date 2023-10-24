@@ -1,5 +1,5 @@
 /*
-Creates a harlink to a file
+Creates a hardlink to a file
 Delete / Unlink the original file and the link
 */
 
@@ -22,15 +22,15 @@ int main()
     else
     {
         close(fd);
-        if (link(fn, ln) != 0)
+        if (link(fn, ln) != 0) // link; creates a hard link vs symlink: creates a symbolic link
         {
             perror("link() error");
             unlink(fn);
         }
         else
         {
-            unlink(fn);
-            unlink(ln);
+            //unlink(fn); // Delete the original file
+            //unlink(ln); // Delete the hard link
         }
     }
 }
