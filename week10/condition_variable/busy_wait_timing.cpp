@@ -9,21 +9,23 @@ Example: Thread synchronization without condition variable. Busy-wait implementa
 using namespace std;
 
 std::mutex g_mutex;
-bool g_ready = false;
+bool g_ready = false;  // not a condition variable!
 
-// producer
+// Producer : generate the data
 void workThread() {
   std::this_thread::sleep_for(std::chrono::seconds(60));
   std::unique_lock<std::mutex> ul(g_mutex);
   g_ready = true;
-}
+  // No need to unlock !
+} // Once we are out the function scope - the lock is automatically released
 
 
-// Consumer
+// Consumer will busy wait loop - Polling !
 void waitThread() {
-  while(!g_ready){
+  while(!g_ready){// Wait on the flag
 
   }
+  // Consume the data - use the data
   std::cout << "Wait Thread Executed! \n";
 }
 

@@ -21,7 +21,7 @@ int main()
     sigemptyset(&sa.sa_mask);  // New
 
     // System calls interrupted by this signal are automatically restarted.
-    sa.sa_flags = SA_RESTART | SA_SIGINFO; // New
+    sa.sa_flags = SA_RESTART | SA_SIGINFO; // 
 
     // Change the action of SIGINT
     if (sigaction(SIGINT, &sa, NULL) == -1)

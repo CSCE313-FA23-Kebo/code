@@ -19,18 +19,18 @@ bool g_ready = false;
 void workThread() {
   // Simulate work for 60 seconds 
   std::cout << "Starting work thread ... \n";
-  std::this_thread::sleep_for(std::chrono::seconds(60));
+  std::this_thread::sleep_for(std::chrono::seconds(60)); // Simulation of work
   std::unique_lock<std::mutex> ul(g_mutex);
   g_ready = true;
-  ul.unlock();
-  g_cv.notify_one();
+  ul.unlock(); // optional
+  g_cv.notify_one(); // Interrupt
 }
 
-// Consumer
+// Consumer (There is no while loop!)
 void waitThread() {
   std::cout << "Inside wait thread ... \n";
   std::unique_lock<std::mutex> ul(g_mutex);
-  g_cv.wait(ul, [] { return g_ready; }); // Predicate
+  g_cv.wait(ul, [] { return g_ready; }); // Wait as long as Predicate is false + keep the mutex unlocks
   std::cout << "Wait Thread Executed! \n";
 
   // Unique lock with automatically released

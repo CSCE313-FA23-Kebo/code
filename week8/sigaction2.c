@@ -14,7 +14,7 @@ void check_mask(int sig, char *signame)
     // NULL, indicates that we are not providing a new signal mask. Instead, we want to retrieve the current signal mask.
     // The current signal mask is obtained and stored in the sigset variable.
     // This instruction retrieves the current mask associated to the process
-    sigprocmask(SIG_SETMASK, NULL, &sigset);
+    sigprocmask(SIG_SETMASK, NULL, &sigset); // this does not add any new signals to block! it copies the current/old mask
 
     // Is the passed signal in the mask?
     if (sigismember(&sigset, sig))
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     struct sigaction sigact, old_sigact;
 
     // Set of signals
-    sigset_t sigset;
+    //sigset_t sigset;
 
     /*
      * CONFIGURATION #1
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
      * using the DO-NOT-DEFER flag. Reset the signal handler to the SIG_DFL signal flag options.
      */
     // No blocking signal
-    sigemptyset(&sigact.sa_mask);
+    sigemptyset(&sigact.sa_mask); // EMPTY
     sigact.sa_flags = 0;
     sigact.sa_flags = sigact.sa_flags | SA_NODEFER | SA_RESETHAND;
     sigact.sa_handler = catcher;
@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
      * Send a signal to this program by using kill(getpid(), SIGUSR1); (equivalent to raise(SIGUSR1))
      */
     printf("Raising a SIGUSR1 signal\n");
+    //raise(SIGUSR1);
     kill(getpid(), SIGUSR1);
 
     /*
@@ -75,7 +76,8 @@ int main(int argc, char *argv[])
     sigaddset(&sigact.sa_mask, SIGUSR2); // Block SIGUSR2 by adding it to the list of excluded signals
     sigact.sa_flags = 0;
     sigact.sa_handler = catcher;
-    sigaction(SIGUSR1, &sigact, NULL);
+    sigaction(SIGUSR1, &sigact, NULL); // Upon capture of sigusr1, use the handler Catcher
+    // Mask = {SIGUSR1, SIGUSR2}
 
     /*
      * Send a signal to this program by using kill(getpid(), SIGUSR1)
