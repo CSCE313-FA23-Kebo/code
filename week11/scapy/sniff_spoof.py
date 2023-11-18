@@ -1,8 +1,10 @@
 
-from scapy.all import *
+from scapy.all import * # get allmthe definitions fomr scapy
+
 
 print("SNIFFING AND SPOOFING PACKETS.........")
 
+# This function modifies any ICMP packet
 def spoof_pkt(pkt):
     if ICMP in pkt and pkt[ICMP].type == 8:
         print("===Original Packet===")
@@ -28,4 +30,7 @@ def spoof_pkt(pkt):
 
 
 #pkt = sniff(iface='ens4', filter='icmp', prn=spoof_pkt)
-pkt = sniff(filter='icmp', prn=spoof_pkt)
+def main():
+    pkt = sniff(filter='icmp', prn=spoof_pkt)
+
+main()
